@@ -11,6 +11,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - name: dump github context
+        shell: bash
+        run: |
+          cat -n <<EOF
+          ${{ toJSON(github) }}
+          EOF
+
       - name: Compute Impacted Targets
         uses: trunk-io/merge-action@merge-fork-prs
         with:
